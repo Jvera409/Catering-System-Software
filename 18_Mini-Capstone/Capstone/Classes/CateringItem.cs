@@ -9,8 +9,7 @@ namespace Capstone.Classes
         public string ProductCode { get; set; }
         public string Name { get; set; }
         public double PurchasePrice { get; set; }
-        public int Quantity { get; set; } = 50;             // all item start out at 50 
-                                                            // This class should contain the definition for one catering item
+        public int Quantity { get; set; } = 50;             // all item start out at 50                                             // This class should contain the definition for one catering item
 
 
 
@@ -20,7 +19,6 @@ namespace Capstone.Classes
             Name = name;
             PurchasePrice = purchasePrice;
             Quantity = quantity;
-
 
         }
 

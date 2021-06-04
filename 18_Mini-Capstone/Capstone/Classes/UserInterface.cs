@@ -16,6 +16,7 @@ namespace Capstone.Classes
 
         private Catering catering = new Catering();
 
+
         public void RunInterface()
         {
             bool done = false;
@@ -38,8 +39,6 @@ namespace Capstone.Classes
                     default:
                         Console.WriteLine("Invalid selection. Please try again.");
                         break;
-
-
 
                 }
 
@@ -64,8 +63,6 @@ namespace Capstone.Classes
                 Console.WriteLine(menuItems.ToString());           // this returns everything in our properties in a string
 
             }
-
-
         }
 
         private void OrderMenu()
@@ -81,29 +78,18 @@ namespace Capstone.Classes
 
                 {
                     case "1":
-                        //AddMoney();               // will come back to complete method
+                        AddMoney();               // will come back to complete method
                         break;
                     case "2":
-                        //ProductSelection();
+                        ProductSelection();
                         break;
                     case "3":
                         //TransactionComplete();
                         break;
-                    case "4":
-                        //done = true;
-                        break;
                     default:
                         Console.WriteLine("Invalid selection. Please try again.");
                         break;
-
-
-
                 }
-
-
-
-
-
             }
         }
         public void DisplayOrderMenu()
@@ -112,8 +98,51 @@ namespace Capstone.Classes
             Console.WriteLine("(1) Add Money: ");
             Console.WriteLine("(2) Select Products");
             Console.WriteLine("(3) Complete Transaction");
-            Console.WriteLine("(4) Quit Program.");
+            Console.WriteLine("Current Account Balance: " + catering.CurrentBalance);
+
+        }
+        public void AddMoney()
+        {
+
+            Console.WriteLine("Please enter whole dollar amount up to $5000");
+            double userInput = int.Parse(Console.ReadLine());
+
+            if (catering.AddMoney(userInput))
+            {
+                Console.WriteLine("Money successfully added!");
+            }
+            else
+            {
+                Console.WriteLine("Amount exceeded 5000, Please enter different amount.");
+            }
+
+        }
+        private void ProductSelection()
+        {
+            {
+
+                CateringItem[] item = catering.GetItems();
+                foreach (CateringItem menuItems in item)
+                    Console.WriteLine(menuItems.ToString());
+
+                Console.WriteLine("Please enter product code of product desired.");
+                string productSelected = Console.ReadLine();
+                
+
+                Console.WriteLine("Enter Quantity amount.");
+                string amountWanted = Console.ReadLine();
+                int amountSelected = int.Parse(amountWanted);
+
+                string result = "";
+
+                result = catering.ProductSelection(productSelected, amountSelected);
+
+                Console.WriteLine(result);
+                Console.ReadLine();
+
+            }
         }
     }
 }
+    
 
