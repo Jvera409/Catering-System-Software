@@ -78,22 +78,27 @@ namespace Capstone.Classes
             return "Product not found";
 
         }
-        public void TransactionComplete()
+        public string TransactionComplete()
         {
-            //1. Get the current balance
+            string orderOutput = "";
+            double totalPerItem = 0;
+            double orderTotal = 0;
 
-
-            //2. Get the total from cart by looping through purchased items by totling up item quantity by item price
-
-            foreach(CateringItem shoppingCart in purchasedItems)
+            foreach (CateringItem item in purchasedItems)
             {
 
+                totalPerItem = item.Quantity * item.PurchasePrice;
+                orderTotal = orderTotal + totalPerItem;
+
+                orderOutput += item.Quantity + " | " + item.Name + " | " + item.PurchasePrice.ToString("c") + " | " + totalPerItem.ToString("c") + "\n";
             }
-            //3. Figure out change by subtracrting purchase total from current balance.
+            orderOutput += "Shopping cart total. " + orderTotal;
+            CurrentBalance = 0;
+            return orderOutput;
         }
     }
+    
 }
-
 
 
 

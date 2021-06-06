@@ -23,6 +23,7 @@ namespace Capstone.Classes
             while (!done)
 
             {
+                Console.WriteLine();
                 MainMenu();
                 string input = Console.ReadLine();
                 switch (input)
@@ -90,7 +91,7 @@ namespace Capstone.Classes
                         break;
                     case "3":
                         TransactionComplete();
-                        break;
+                        return;
                     default:
                         Console.WriteLine();
                         Console.WriteLine("Invalid selection. Please try again.");
@@ -137,6 +138,7 @@ namespace Capstone.Classes
                 Console.WriteLine("Please enter valid product code of product desired.");
                 string productSelected = Console.ReadLine();
 
+
                 if (productSelected == "")
                 {
 
@@ -164,8 +166,14 @@ namespace Capstone.Classes
         }
         private void TransactionComplete()
         {
-            Console.WriteLine(catering.purchasedItems);
-            
+            Console.WriteLine();
+            Console.WriteLine("This is your changeback: " + catering.CurrentBalance);
+
+            string orderOutput = catering.TransactionComplete();
+
+            Console.WriteLine(orderOutput);
+
+ 
         }
         
     }
