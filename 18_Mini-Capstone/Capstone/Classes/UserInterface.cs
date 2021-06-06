@@ -37,6 +37,7 @@ namespace Capstone.Classes
                         done = true;
                         break;
                     default:
+                        Console.WriteLine();
                         Console.WriteLine("Invalid selection. Please try again.");
                         break;
 
@@ -48,15 +49,19 @@ namespace Capstone.Classes
         private void MainMenu()
 
         {
+           
             Console.WriteLine("(1) Display Catering Items");
             Console.WriteLine("(2) Order");
             Console.WriteLine("(3) Quit");
+            Console.WriteLine();
         }
 
         private void CateringItems()
         {
+            
             Console.WriteLine("Here are all the available catering items: ");   // how do we implement catering here?
             CateringItem[] item = catering.GetItems();
+            Console.WriteLine();
 
             foreach (CateringItem menuItems in item)               // goes through list CateringItem...GetItems is name of Method we used to read the file
             {
@@ -84,9 +89,10 @@ namespace Capstone.Classes
                         ProductSelection();
                         break;
                     case "3":
-                        //TransactionComplete();
+                        TransactionComplete();
                         break;
                     default:
+                        Console.WriteLine();
                         Console.WriteLine("Invalid selection. Please try again.");
                         break;
                 }
@@ -103,16 +109,18 @@ namespace Capstone.Classes
         }
         public void AddMoney()
         {
-
+            Console.WriteLine();
             Console.WriteLine("Please enter whole dollar amount up to $5000");
             double userInput = int.Parse(Console.ReadLine());
 
             if (catering.AddMoney(userInput))
             {
+                Console.WriteLine();
                 Console.WriteLine("Money successfully added!");
             }
             else
             {
+                Console.WriteLine();
                 Console.WriteLine("Amount exceeded 5000, Please enter different amount.");
             }
 
@@ -125,23 +133,41 @@ namespace Capstone.Classes
                 foreach (CateringItem menuItems in item)
                     Console.WriteLine(menuItems.ToString());
 
-                Console.WriteLine("Please enter product code of product desired.");
+                Console.WriteLine();
+                Console.WriteLine("Please enter valid product code of product desired.");
                 string productSelected = Console.ReadLine();
-                
 
-                Console.WriteLine("Enter Quantity amount.");
-                string amountWanted = Console.ReadLine();
+                if (productSelected == "")
+                {
+
+                }
+
+                string amountWanted = "";
+                while (amountWanted.Length <= 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Enter Quantity amount above 1.");
+
+                    amountWanted = Console.ReadLine();
+                }
                 int amountSelected = int.Parse(amountWanted);
 
                 string result = "";
 
                 result = catering.ProductSelection(productSelected, amountSelected);
 
+                Console.WriteLine();
                 Console.WriteLine(result);
                 Console.ReadLine();
 
             }
         }
+        private void TransactionComplete()
+        {
+            Console.WriteLine(catering.purchasedItems);
+            
+        }
+        
     }
 }
     
