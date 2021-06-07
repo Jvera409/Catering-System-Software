@@ -10,6 +10,7 @@ namespace Capstone.Classes
         // all files for this application should in this directory
         // you will likley need to create it on your computer
         private string filePath = @"C:\Catering\cateringsystem.csv";
+        private string outputFullPath = @"C:\Catering\Log.txt";
 
         // This class should contain any and all details of access to files
         public CateringItem[] GetItems()
@@ -28,7 +29,7 @@ namespace Capstone.Classes
                     menuItems.ProductCode = split[0];
                     menuItems.Name = split[1];
                     menuItems.PurchasePrice = double.Parse(split[2]);
-                    
+
 
                     items.Add(menuItems);
 
@@ -40,6 +41,7 @@ namespace Capstone.Classes
 
             return items.ToArray();                         // had to add return .ToArray because we used string[]
         }
+
         public bool SetItems(CateringItem[] items)
         {
             return false;
@@ -47,13 +49,15 @@ namespace Capstone.Classes
 
         public bool SetItems(List<CateringItem> items)
         {
-            using(StreamWriter sw = new StreamWriter(filePath, false))
+
+
+            using (StreamWriter sw = new StreamWriter(outputFullPath, true))
             {
                 sw.WriteLine(DateTime.UtcNow);
 
-                foreach(CateringItem item in items)
+                foreach (CateringItem audit in items)
                 {
-                    string log = $"{item.ProductCode}, {item.Name}, {item.PurchasePrice}, {item.Quantity}";
+                    string log = $"{audit.ProductCode}, {audit.Name}, {audit.PurchasePrice}, {audit.Quantity}";
                     sw.WriteLine(log);
                 }
             }

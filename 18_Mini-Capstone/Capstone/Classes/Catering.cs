@@ -22,6 +22,7 @@ namespace Capstone.Classes
         public CateringItem[] GetItems()
         {
             CateringItem[] item = items.ToArray();
+            data.SetItems(item);
             return item;
 
         }
@@ -36,6 +37,8 @@ namespace Capstone.Classes
                 CurrentBalance += moneyAdded;
 
             }
+
+            data.SetItems(items);
 
             return true;
         }
@@ -75,6 +78,7 @@ namespace Capstone.Classes
                     }
                 }
             }
+            data.SetItems(items);
             return "Product not found";
 
         }
@@ -94,6 +98,7 @@ namespace Capstone.Classes
             }
             orderOutput += "Shopping cart total. " + orderTotal;
             CurrentBalance = 0;
+            data.SetItems(items);
             return orderOutput;
         }
     }

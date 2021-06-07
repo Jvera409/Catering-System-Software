@@ -102,7 +102,7 @@ namespace Capstone.Classes
         public void DisplayOrderMenu()
 
         {
-            Console.WriteLine("(1) Add Money: ");
+            Console.WriteLine("(1) Add Money ");
             Console.WriteLine("(2) Select Products");
             Console.WriteLine("(3) Complete Transaction");
             Console.WriteLine("Current Account Balance: " + catering.CurrentBalance);
